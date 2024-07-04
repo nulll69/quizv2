@@ -1,4 +1,4 @@
-const { rankv2 } = require("../db.js");
+const { rankv2 } = require("../dbs.js");
 async function leaderboardv2(page) {
     try {
    const allPlayers = await rankv2();
