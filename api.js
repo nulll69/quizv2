@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const {  leaderboardv1 } = require('./leaderboard/2023');
 const { leaderboardv2, rank } = require('./leaderboard/2024');
-const { addPlayerv2, correct, wrong, QuizGame, аddQuestion, categoryList } = require('./db.js');
+const { addPlayerv2, correct, wrong, QuizGame, аddQuestion, categoryList } = require('./dbs.js');
 const rand = require("./randmsg");
 const Port = process.env.PORT || 3000;
 app.use(express.json());
