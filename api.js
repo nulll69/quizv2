@@ -50,7 +50,6 @@ res.json({ message });
     res.status(500).json({ error: error.message });
   }
 });
-
 //normal fetching question endpoint 
 app.get('/quiz/:category', async (req, res) => {
 const category = req.params.category.toLowerCase();
