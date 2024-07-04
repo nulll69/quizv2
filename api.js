@@ -38,10 +38,10 @@ app.put('/scores', async (req, res) => {
   let message;
    if (option === 'correct') {
   message = await correct(playerid);
- message += rand(correct); 
+ message += rand(true); 
  } else if (option === 'wrong') {
  message = await wrong(playerid);
- message += rand(wrong); 
+ message += rand(false); 
  } else {
   message = "!?";
  }
