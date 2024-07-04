@@ -33,15 +33,24 @@ addPlayerv2(playerid, name).catch(err => console.error('Failed to add player to 
 });   
 //adding players score. Leaderboard database endpoint. Anyone doing unusual activity will automatically delete its entire data on database and also will get ban. Please be fair
 app.put('/scores', async (req, res) => {
-const { playerid, option } = req.body;
-try {
- let message;
-message = option === 'correct' ? (await correct(playerid), rand(correct)) : option === 'wrong' ? (await wrong(playerid), rand(wrong)) : "!?";
+  const { playerid, option } = req.body;
+  try {
+  let message;
+   if (option === 'correct') {
+  message = await correct(playerid);
+ message += rand(correct); 
+ } else if (option === 'wrong') {
+ message = await wrong(playerid);
+ message += rand(wrong); 
+ } else {
+  message = "!?";
+ }
 res.json({ message });
   } catch (error) {
-res.status(500).json({ error: error.message });
- }
+    res.status(500).json({ error: error.message });
+  }
 });
+
 //normal fetching question endpoint 
 app.get('/quiz/:category', async (req, res) => {
 const category = req.params.category.toLowerCase();
