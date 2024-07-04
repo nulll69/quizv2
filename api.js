@@ -14,7 +14,7 @@ return res.json({ msg: "Missing params" });
 const categs = await categoryList();
 const msg = `Please add a category Here's the list of categories:\n==============\n${categs.join('\n')}\n==============\nExample usage:\n{p} ${categs[Math.floor(Math.random() * categs.length)]}\n{p} rank >> view your quiz rank\n{p} leaderboard >> view the top players\n{p} leaderboardv1 >> view 2023 leaderboard`;
 return !category ? res.json({ msg }) :
-category.startsWith('rank') ? res.json({ msg: await rank(playerid) }) :          category.startsWith('leaderboardv1') ? res.json(await leaderboardv1(parseInt(category.split('leaderboardv1')[1], 10) || 1).catch(() => ({ error: 'Failed to fetch leaderboard.' }))) :
+category.startsWith('rank') ? res.json({ msg: await rank(playerid) }) : category.startsWith('leaderboardv1') ? res.json(await leaderboardv1(parseInt(category.split('leaderboardv1')[1], 10) || 1).catch(() => ({ error: 'Failed to fetch leaderboard.' }))) :
 category.startsWith('leaderboard') ? res.json(await leaderboardv2(parseInt(category.split('leaderboard')[1], 10) || 1).catch(() => ({ error: 'Failed to fetch leaderboard.' }))) :
 !categs.includes(category.toLowerCase()) ? res.json({ msg }) :
 (async () => {
