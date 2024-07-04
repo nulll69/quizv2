@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const {  leaderboardv1 } = require('./leaderboard/2023');
 const { leaderboardv2, rank } = require('./leaderboard/2024');
-const { addPlayerv2, correct, wrong, QuizGame, аddQuestion, categoryList } = require('./db.js');
+const { addPlayerv2, correct, wrong, QuizGame, аddQuestion, categoryList } = require('./db');
 const rand = require("./randmsg");
 const Port = process.env.PORT || 3000;
 app.use(express.json());
@@ -31,7 +31,7 @@ addPlayerv2(playerid, name).catch(err => console.error('Failed to add player to 
   }
  })();
 });   
-//adding players score. Leaderboard database endpoint. Anyone doing unusual activity will automatically delete its entire data on database and also will get ban
+//adding players score. Leaderboard database endpoint. Anyone doing unusual activity will automatically delete its entire data on database and also will get ban. Please be fair
 app.put('/scores', async (req, res) => {
 const { playerid, option } = req.body;
 try {
@@ -63,5 +63,5 @@ app.post('/addq', async (req, res) => {
     return res.status(200).json(await addQuestion(category, question, answer, apikey));
 });
 app.listen(Port, () => {
-console.log(`Server is live on port ${PORT}`);
+console.log(`Server is live on port ${Port}`);
 });
