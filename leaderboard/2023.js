@@ -8,6 +8,7 @@ async function leaderboardv1(page) {
  if (start >= players.length) {
   return { msg: `There are only ${Math.ceil(players.length / size)} total pages.` };
   }
+players.sort((a, b) => b.correct - a.correct);
  const pagePlayers = players.slice(start, end);
  let msg = `Top Players from 2023\n\n`;
  pagePlayers.forEach((player, i) => {
